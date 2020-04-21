@@ -22,6 +22,7 @@ Service runs for every 30 mins and retrieve the top headline from a given news s
 newsapi provides a list of sources which newsapi.org supports and you can get the source information from newsapi python libary using the below code.
 
 ![Image description](images/Solution.JPG)
+
 Libraries and frameworks used
 1. twython - open source python library to connect with Twitter
 2. newsapi - open source python library to connect with newsapi.org
