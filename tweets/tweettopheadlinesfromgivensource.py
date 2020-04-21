@@ -12,13 +12,6 @@ def tweettopheadlines(event, context):
     data = json.loads(event_string)
     source_name = data['source']
 
-    app_key = os.environ['CONSUMER_KEY']
-    app_secret = os.environ['CONSUMER_SECRET']
-    oauth_token = os.environ['OAUTH_TOKEN']
-    oauth_token_secret = os.environ['OAUTH_TOKEN_SECRET']
-
-    twitter = Twython(app_key, app_secret, oauth_token, oauth_token_secret)
-
     news_api = NewsApiClient(api_key=os.environ['NEWSAPI_API_KEY'])
 
     # /v2/top-headlines
@@ -29,6 +22,15 @@ def tweettopheadlines(event, context):
     for head_line in top_headlines["articles"]:
         headlines_list.append(str(head_line['title'])+'\n')
         headlines_list.append(str(head_line['url'])+'\n')
+
+    app_key = os.environ['CONSUMER_KEY']
+    app_secret = os.environ['CONSUMER_SECRET']
+    oauth_token = os.environ['OAUTH_TOKEN']
+    oauth_token_secret = os.environ['OAUTH_TOKEN_SECRET']
+
+    twitter = Twython(app_key, app_secret, oauth_token, oauth_token_secret)
+
+    twitter = Twython(app_key, app_secret, oauth_token, oauth_token_secret)
 
     twitter.update_status(status=' '.join(map(str, headlines_list)))
 
