@@ -33,14 +33,6 @@ provider:
     OAUTH_TOKEN_SECRET: b05lANLr183Oez0WhN7hcXGQy1Wr9dTOq2AFrIVoCcKkt
     NEWSAPI_API_KEY: 48acc486dc144de5a7213adeecbb97da
 functions:
-  saygoodmorningtweet:
-    handler: tweets/everydaygoodmorningtweet.saygoodmorningtweet
-    events:
-      - schedule:
-          enabled: true
-          name: goodMorningDailyTest
-          description: 'Daily event to say good morning to the World'
-          rate: cron(20 11 * * ? *)
   tweettopheadlines:
     handler: tweets/tweettopheadlinesfromgivensource.tweettopheadlines
     events:
