@@ -37,10 +37,25 @@ Libraries and frameworks used
      2. API Secret & API Secret Token : The below two and the consumer credentials are required in order to tweet, re-tweet and wherever posting the data to twitter is concerned.
         a. API Secret
         b. API Secret Token
-
+```python
+        app_key = os.environ['CONSUMER_KEY']
+        app_secret = os.environ['CONSUMER_SECRET']
+        oauth_token = os.environ['OAUTH_TOKEN']
+        oauth_token_secret = os.environ['OAUTH_TOKEN_SECRET']
+        
+        twitter = Twython(app_key, app_secret, oauth_token, oauth_token_secret)
+        twitter.update_status(status='hi, myfirst tweet through twython')
 ```
-    newsapi = NewsApiClient(api_key=<REGISTERED_API_KEY>)
-    sources = newsapi.get_sources()
+# Using newsapi to integrate with newsapi.org
+- Register to newsapi.org website and create an account
+- Create an API Key to access the end points of newsapi.org.
+- Install the newsapi python library using pip install command and mention the package name in requirements.txt so that serverless framework download the required package.
+- See the below code snippet to call the newsapi. For more information on newsapi python library, refer https://github.com/mattlisiv/newsapi-python
+```
+    news_api = NewsApiClient(api_key=os.environ['NEWSAPI_API_KEY'])
+    top_headlines = news_api.get_top_headlines(sources=source_name,
+                                               language='en',
+                                               page_size=1)
 ```
 
 
