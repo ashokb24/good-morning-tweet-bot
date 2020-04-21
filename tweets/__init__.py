@@ -20,26 +20,28 @@ twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 
 # Init
 newsapi = NewsApiClient(api_key='48acc486dc144de5a7213adeecbb97da')
-
-# /v2/top-headlines
-top_headlines = newsapi.get_top_headlines(sources='the-times-of-india',
-                                              language='en',
-                                              page_size=3)
-# /v2/top-headlines
-top_headlines = newsapi.get_top_headlines(sources='the-times-of-india',
-                                          language='en',
-                                          page_size=2)
-print(top_headlines)
-headlines_list = ['TOP HEADLINES : Courtesy : TOI \n']
-for head_line in top_headlines["articles"]:
-    # headlines_list.append(str(head_line['title']).lstrip(',').rstrip(',')+'\n')
-    headlines_list.append(str(head_line['url'])+'\n')
-
-print(headlines_list)
-twitter.update_status(status=' '.join(map(str, headlines_list)))
-
-#twitter.update_status(status=headlist_list)
 # /v2/sources
-# sources = newsapi.get_sources()
+sources = newsapi.get_sources()
+print(sources)
+# # /v2/top-headlines
+# top_headlines = newsapi.get_top_headlines(sources='the-times-of-india',
+#                                               language='en',
+#                                               page_size=3)
+# # /v2/top-headlines
+# top_headlines = newsapi.get_top_headlines(sources='the-times-of-india',
+#                                           language='en',
+#                                           page_size=2)
+# print(top_headlines)
+# headlines_list = ['TOP HEADLINES : Courtesy : TOI \n']
+# for head_line in top_headlines["articles"]:
+#     # headlines_list.append(str(head_line['title']).lstrip(',').rstrip(',')+'\n')
+#     headlines_list.append(str(head_line['url'])+'\n')
 #
-# # print(sources)
+# print(headlines_list)
+# twitter.update_status(status=' '.join(map(str, headlines_list)))
+#
+# #twitter.update_status(status=headlist_list)
+# # /v2/sources
+# # sources = newsapi.get_sources()
+# #
+# # # print(sources)
