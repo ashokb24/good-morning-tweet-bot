@@ -13,3 +13,10 @@ The project is hosted on AWS Cloud infra in the form of serverless components. A
 - Solution to be serverless
 - Solution can use any open source library wherever applicable.
 
+![Image description](images/Solution.JPG)
+
+
+
+
+
+
