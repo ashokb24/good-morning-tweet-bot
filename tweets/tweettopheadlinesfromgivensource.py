@@ -30,8 +30,6 @@ def tweettopheadlines(event, context):
 
     twitter = Twython(app_key, app_secret, oauth_token, oauth_token_secret)
 
-    twitter = Twython(app_key, app_secret, oauth_token, oauth_token_secret)
-
     twitter.update_status(status=' '.join(map(str, headlines_list)))
 
     return "BOT FINISHED SENDING THE TOP HEADLINES " + str(datetime.now())
