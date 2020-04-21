@@ -1,0 +1,56 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: good-morning-tweet-bot
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+# frameworkVersion: "=X.X.X"
+
+provider:
+  name: aws
+  runtime: python3.8
+  profile: serverless-admin
+  region: ap-south-1
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+    CONSUMER_KEY: LEWS4xJBnxU4ADye1RjYfdaun
+    CONSUMER_SECRET: 7sl4AuezLZKajlWf3A0kSyEv4hB9Mi4rJM6mA8QVfORf31nlha
+    OAUTH_TOKEN: 840889837-uxyFan2Rxhw0PJK6XR2R1Mj4aI2udRUCazbPGfYI
+    OAUTH_TOKEN_SECRET: b05lANLr183Oez0WhN7hcXGQy1Wr9dTOq2AFrIVoCcKkt
+    NEWSAPI_API_KEY: 48acc486dc144de5a7213adeecbb97da
+functions:
+  saygoodmorningtweet:
+    handler: tweets/everydaygoodmorningtweet.saygoodmorningtweet
+    events:
+      - schedule:
+          enabled: true
+          name: goodMorningDailyTest
+          description: 'Daily event to say good morning to the World'
+          rate: cron(20 11 * * ? *)
+  tweettopheadlines:
+    handler: tweets/tweettopheadlinesfromgivensource.tweettopheadlines
+    events:
+      - schedule:
+          enabled: true
+          name: topHeadLinesEvent
+          description: 'Every 30 minutes headlines from Times of India scheduler'
+          rate: cron(0/30 * * * ? *)
+          input:
+            source: 'the-times-of-india'
+plugins:
+  - serverless-python-requirements
+  - serverless-local-schedule
