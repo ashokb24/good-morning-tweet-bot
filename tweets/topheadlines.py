@@ -7,7 +7,7 @@ from newsapi import NewsApiClient
 import json
 
 
-def tweettopheadlines(event, context):
+def tweet_top_head_lines(event, context):
     event_string = json.dumps(event)
     data = json.loads(event_string)
     source_name = data['source']
@@ -18,9 +18,8 @@ def tweettopheadlines(event, context):
     top_headlines = news_api.get_top_headlines(sources=source_name,
                                                language='en',
                                                page_size=1)
-    headlines_list = ['HEADLINES FROM MY BOT : Courtesy :' + source_name + '\n']
+    headlines_list = ['FROM MY PERSONAL BOT ASSISTANT : Courtesy :' + source_name + '\n']
     for head_line in top_headlines["articles"]:
-        headlines_list.append(str(head_line['title'])+'\n')
         headlines_list.append(str(head_line['url'])+'\n')
 
     app_key = os.environ['CONSUMER_KEY']

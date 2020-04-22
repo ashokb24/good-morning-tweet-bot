@@ -34,7 +34,7 @@ provider:
     NEWSAPI_API_KEY: 48acc486dc144de5a7213adeecbb97da
 functions:
   tweettopheadlines:
-    handler: tweets/tweettopheadlinesfromgivensource.tweettopheadlines
+    handler: tweets/topheadlines.tweet_top_head_lines
     events:
       - schedule:
           enabled: true
