@@ -1,4 +1,4 @@
-# good-morning-tweet-bot
+# top-headline-tweet-bot
 
 Automated Tweet Bot:
 
