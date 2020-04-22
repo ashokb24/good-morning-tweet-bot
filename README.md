@@ -38,6 +38,7 @@ Libraries and frameworks used
      2. API Secret & API Secret Token : The below two and the consumer credentials are required in order to tweet, re-tweet and wherever posting the data to twitter is concerned.
         a. API Secret
         b. API Secret Token
+- Since consumer key, Consumer Key Secret, API Secret and API Secret Token are considered as Secrets required for authentication and they are deemed as user-specific data, I have not mentioned my credentials in serverless.yml file. If you want to give to try this bot, its your responsibility to generate the secrets and mention the same in serverless.yml as environmental variables by replacing the text GENERATE_AND_REPLACE_ACTUAL_VALUE
 - When you are calling the twitter endpoints, make sure you give priority for each end points Rate Limiting. Please refer the api reference of update_status rate limit. (https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update)
 - For tweet and re-tweet including 300 requests per 3 hour window.
 ```python

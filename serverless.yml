@@ -28,10 +28,10 @@ provider:
   environment:
     DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
     CONSUMER_KEY: LEWS4xJBnxU4ADye1RjYfdaun
-    CONSUMER_SECRET: 7sl4AuezLZKajlWf3A0kSyEv4hB9Mi4rJM6mA8QVfORf31nlha
-    OAUTH_TOKEN: 840889837-uxyFan2Rxhw0PJK6XR2R1Mj4aI2udRUCazbPGfYI
-    OAUTH_TOKEN_SECRET: b05lANLr183Oez0WhN7hcXGQy1Wr9dTOq2AFrIVoCcKkt
-    NEWSAPI_API_KEY: 48acc486dc144de5a7213adeecbb97da
+    CONSUMER_SECRET: <GENERATE_AND_REPLACE_ACTUAL_VALUE>
+    OAUTH_TOKEN: <GENERATE_AND_REPLACE_ACTUAL_VALUE>
+    OAUTH_TOKEN_SECRET: <GENERATE_AND_REPLACE_ACTUAL_VALUE>
+    NEWSAPI_API_KEY: <GENERATE_AND_REPLACE_ACTUAL_VALUE>
 functions:
   tweettopheadlines:
     handler: tweets/topheadlines.tweet_top_head_lines
