@@ -38,6 +38,8 @@ Libraries and frameworks used
      2. API Secret & API Secret Token : The below two and the consumer credentials are required in order to tweet, re-tweet and wherever posting the data to twitter is concerned.
         a. API Secret
         b. API Secret Token
+- When you are calling the twitter endpoints, make sure you give priority for each end points Rate Limiting. Please refer the api reference of update_status rate limit. (https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update)
+- For tweet and re-tweet including 300 requests per 3 hour window.
 ```python
         app_key = os.environ['CONSUMER_KEY']
         app_secret = os.environ['CONSUMER_SECRET']
@@ -52,6 +54,7 @@ Libraries and frameworks used
 - Create an API Key to access the end points of newsapi.org.
 - Install the newsapi python library using pip install command and mention the package name in requirements.txt so that serverless framework download the required package.
 - See the below code snippet to call the newsapi. For more information on newsapi python library, refer https://github.com/mattlisiv/newsapi-python
+- newsapi for developer profile, has a cap of 500 requests per day. So plan accordingly as per your needs.
 ```
     news_api = NewsApiClient(api_key=os.environ['NEWSAPI_API_KEY'])
     top_headlines = news_api.get_top_headlines(sources=source_name,

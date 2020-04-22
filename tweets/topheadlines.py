@@ -22,13 +22,17 @@ def tweet_top_head_lines(event, context):
     for head_line in top_headlines["articles"]:
         headlines_list.append(str(head_line['url'])+'\n')
 
-    app_key = os.environ['CONSUMER_KEY']
-    app_secret = os.environ['CONSUMER_SECRET']
-    oauth_token = os.environ['OAUTH_TOKEN']
-    oauth_token_secret = os.environ['OAUTH_TOKEN_SECRET']
+    if len(top_headlines["articles"]) > 0:
 
-    twitter = Twython(app_key, app_secret, oauth_token, oauth_token_secret)
+        app_key = os.environ['CONSUMER_KEY']
+        app_secret = os.environ['CONSUMER_SECRET']
+        oauth_token = os.environ['OAUTH_TOKEN']
+        oauth_token_secret = os.environ['OAUTH_TOKEN_SECRET']
 
-    twitter.update_status(status=' '.join(map(str, headlines_list)))
+        twitter = Twython(app_key, app_secret, oauth_token, oauth_token_secret)
+        twitter.update_status(status=' '.join(map(str, headlines_list)))
+        lambda_return_status = "BOT FINISHED SENDING THE TOP HEADLINES " + str(datetime.now())
+    else:
+        lambda_return_status = "NO UPDATED HEADLINES FROM NEWS API WHEN ATTEMPTED AT " +str(datetime.now())
 
-    return "BOT FINISHED SENDING THE TOP HEADLINES " + str(datetime.now())
+    return lambda_return_status
