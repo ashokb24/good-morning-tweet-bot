@@ -33,7 +33,7 @@ provider:
     OAUTH_TOKEN_SECRET: <GENERATE_AND_REPLACE_ACTUAL_VALUE>
     NEWSAPI_API_KEY: <GENERATE_AND_REPLACE_ACTUAL_VALUE>
 functions:
-  tweettopheadlines:
+  tweet_top_head_lines:
     handler: tweets/topheadlines.tweet_top_head_lines
     events:
       - schedule:
