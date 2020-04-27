@@ -65,4 +65,4 @@ Libraries and frameworks used
 
 
 # Results
-![Image description](images/TwitterResults.JPG)
+![Image description](images/Results.JPG)
