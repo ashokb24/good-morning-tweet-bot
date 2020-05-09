@@ -30,6 +30,15 @@ provider:
     AUTO_RETWEET_BUCKET: "my-twitter-secrets-bucket"
     FILE_NAME: "twitter_creds.json"
     S3_REGION: "ap-south-1"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:ListBucket
+      Resource: "arn:aws:s3:::${self:provider.environment.AUTO_RETWEET_BUCKET}"
+    - Effect: Allow
+      Action:
+        - s3:*Object
+      Resource: "arn:aws:s3:::${self:provider.environment.AUTO_RETWEET_BUCKET}/*"
 functions:
   tweet_top_head_lines:
     handler: tweets/topheadlines.tweet_top_head_lines
