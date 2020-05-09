@@ -38,15 +38,22 @@ Libraries and frameworks used
      2. API Secret & API Secret Token : The below two and the consumer credentials are required in order to tweet, re-tweet and wherever posting the data to twitter is concerned.
         a. API Secret
         b. API Secret Token
-- Since consumer key, Consumer Key Secret, API Secret and API Secret Token are considered as Secrets required for authentication and they are deemed as user-specific data, I have not mentioned my credentials in serverless.yml file. If you want to give to try this bot, its your responsibility to generate the secrets and mention the same in serverless.yml as environmental variables by replacing the text GENERATE_AND_REPLACE_ACTUAL_VALUE
+- I have written a separate Python project(https://github.com/ashokb24/s3-bucket-creator) to write these secrets to my own S3 bucket. Briefly, this project can
+    1. Create a S3 Bucket
+    2. Upload a file to a given path with AES-256 encryption
+ 
+ Note: Whilst I will come up with a dedicated jenkins for my usage, I have used boto3 python package in this project to interact with S3 service.
 - When you are calling the twitter endpoints, make sure you give priority for each end points Rate Limiting. Please refer the api reference of update_status rate limit. (https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update)
 - For tweet and re-tweet including 300 requests per 3 hour window.
+Python code to retrevies the secrets from S3
 ```python
-        app_key = os.environ['CONSUMER_KEY']
-        app_secret = os.environ['CONSUMER_SECRET']
-        oauth_token = os.environ['OAUTH_TOKEN']
-        oauth_token_secret = os.environ['OAUTH_TOKEN_SECRET']
-        
+    s3client = boto3.client('s3', region_name=region_name)
+    fileobj = s3client.get_object(Bucket=bucket_name, Key=file_name)
+    filedata = fileobj['Body'].read()
+    contents = filedata.decode('utf-8')
+```
+Code to call Twython package to tweet a post
+```python
         twitter = Twython(app_key, app_secret, oauth_token, oauth_token_secret)
         twitter.update_status(status='hi, myfirst tweet through twython')
 ```
@@ -57,7 +64,7 @@ Libraries and frameworks used
 - See the below code snippet to call the newsapi. For more information on newsapi python library, refer https://github.com/mattlisiv/newsapi-python
 - newsapi for developer profile, has a cap of 500 requests per day. So plan accordingly as per your needs.
 ```
-    news_api = NewsApiClient(api_key=os.environ['NEWSAPI_API_KEY'])
+    news_api = NewsApiClient(api_key=api_key=secret_bag['newsapi_api_key'])
     top_headlines = news_api.get_top_headlines(sources=source_name,
                                                language='en',
                                                page_size=1)
