@@ -42,6 +42,7 @@ def tweet_top_head_lines(event, context):
 
     return lambda_return_status
 
+
 def read_twitter_secrets_from_s3(bucket_name=None, file_name=None, region_name=None):
     s3client = boto3.client('s3', region_name=region_name)
     # Create a file object using the bucket and object key.
