@@ -46,10 +46,17 @@ functions:
       - schedule:
           enabled: true
           name: topHeadLinesEvent
-          description: 'Every 30 minutes headlines from Times of India scheduler'
-          rate: cron(0/30 * * * ? *)
+          description: 'Every 3 hours headlines from the times of india'
+          rate: cron(0 0/3 * * ? *)
           input:
             source: 'the-times-of-india'
+      - schedule:
+          enabled: true
+          name: topHinduHeadLinesEvent
+          description: 'Every 4 hours headlines from the hindu'
+          rate: cron(0 0/4 * * ? *)
+          input:
+            source: 'the-hindu'
 plugins:
   - serverless-python-requirements
   - serverless-local-schedule
